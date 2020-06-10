@@ -8,7 +8,7 @@ class HeadersPage extends StatelessWidget {
   Widget build(BuildContext context) {
   
     return Scaffold(
-      body: HeaderPico()
+      body: HeaderCurvo()
     );
   
   }
