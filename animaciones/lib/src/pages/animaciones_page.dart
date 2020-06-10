@@ -28,6 +28,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
   AnimationController controller;
   Animation<double> rotacion;
   Animation<double> opacidad;
+  Animation<double> opacidadOut;
   Animation<double> moverDerecha;
   Animation<double> agrandar;
 
@@ -46,6 +47,13 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
       CurvedAnimation(
         parent: controller,
         curve: Interval(0, 0.25, curve: Curves.easeOut)
+      )
+    );
+
+    opacidadOut = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(0.75, 1.0, curve: Curves.easeOut)
       )
     );
 
@@ -90,11 +98,11 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
           child: Transform.rotate(
             angle: rotacion.value,
             child: Opacity(
-              opacity: opacidad.value,
+              opacity: opacidad.value - opacidadOut.value,
               child: Transform.scale(
                 scale: agrandar.value,
                 child: childRectangulo
-              )
+              ),
             )
           ),
         );
