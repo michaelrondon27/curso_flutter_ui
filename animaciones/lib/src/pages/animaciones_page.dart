@@ -58,7 +58,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
     );
 
     controller.addListener(() {
-      print('Status: ${ controller.status }');
+      // print('Status: ${ controller.status }');
 
       if ( controller.status == AnimationStatus.completed ) {
         // controller.reverse();
