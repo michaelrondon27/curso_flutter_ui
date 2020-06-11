@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'src/pages/circular_progress_page.dart';
+import 'src/pages/graficas_circulares_page.dart';
  
 void main() => runApp(MyApp());
  
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ProgressBar App',
-      home: CircularProgressPage()
+      home: GraficasCircularesPage()
     );
   }
 }
