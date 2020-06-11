@@ -11,9 +11,34 @@ class CircularProgressPage extends StatefulWidget {
 
 }
 
-class _CircularProgressPageState extends State<CircularProgressPage> {
+class _CircularProgressPageState extends State<CircularProgressPage> with SingleTickerProviderStateMixin {
 
-  double porcentaje = 10;
+  AnimationController controller;
+
+  double porcentaje = 0.0;
+  double nuevoPorcentaje = 0.0;
+
+  @override
+  void initState() {
+    controller = new AnimationController(vsync: this, duration: Duration( milliseconds: 800 ));
+
+    controller.addListener(() {
+
+      // print('valor controller: ${ controller.value }');
+      setState(() {
+        porcentaje = lerpDouble(porcentaje, nuevoPorcentaje, controller.value);
+      });
+
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +48,16 @@ class _CircularProgressPageState extends State<CircularProgressPage> {
         child: Icon( Icons.refresh ),
         backgroundColor: Colors.pink,
         onPressed: () {
-          porcentaje += 10;
+          porcentaje = nuevoPorcentaje;
 
-          if ( porcentaje > 100 ) {
+          nuevoPorcentaje += 10;
+
+          if ( nuevoPorcentaje > 100 ) {
+            nuevoPorcentaje = 0;
             porcentaje = 0;
           }
+
+          controller.forward( from: 0.0 );
 
           setState(() {});
         },
