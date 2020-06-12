@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 class SlideShowPage extends StatelessWidget {
 
   @override
@@ -7,7 +9,7 @@ class SlideShowPage extends StatelessWidget {
   
     return Scaffold(
       body: Center(
-        child: Text('hola mundo')
+        child: SvgPicture.asset('assets/svgs/slide-1.svg')
       )
     );
   
