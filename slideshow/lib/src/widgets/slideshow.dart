@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
 
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class Slideshow extends StatelessWidget {
             Expanded(
               child: _Slides( this.slides )
             ),
-            _Dots()
+            _Dots( this.slides.length )
           ],
         )
       ),
@@ -99,6 +100,10 @@ class _Slide extends StatelessWidget {
 
 class _Dots extends StatelessWidget {
 
+  final int totalSlides;
+
+  const _Dots(this.totalSlides);
+
   @override
   Widget build(BuildContext context) {
 
@@ -107,11 +112,7 @@ class _Dots extends StatelessWidget {
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _Dot(0),
-          _Dot(1),
-          _Dot(2)
-        ],
+        children: List.generate(this.totalSlides, (i) => _Dot(i))
       )
     );
 
