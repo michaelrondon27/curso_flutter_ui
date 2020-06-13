@@ -43,7 +43,10 @@ class _PinterestMenuLocation extends StatelessWidget {
         width: widthPantalla,
         child: Align(
           child: PinterestMenu(
-            mostrar: mostrar
+            mostrar: mostrar,
+            // backgroundColor: Colors.red,
+            // activeColor: Colors.red,
+            // inactiveColor: Colors.blue,
           )
         ),
       )
@@ -69,7 +72,7 @@ class _PinterestGridState extends State<PinterestGrid> {
   @override
   void initState() {
     controller.addListener(() {
-      if ( controller.offset > scrollAnterior ) {
+      if ( controller.offset > scrollAnterior && controller.offset > 150 ) {
         Provider.of<_MenuModel>(context, listen: false).mostrar = false;
       } else {
         Provider.of<_MenuModel>(context, listen: false).mostrar = true;
