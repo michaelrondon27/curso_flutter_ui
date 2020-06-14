@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/boton.dart';
@@ -36,12 +37,15 @@ class EmergencyPage extends StatelessWidget {
       new ItemBoton( FontAwesomeIcons.biking, 'Awards', Color(0xff317183), Color(0xff46997D) ),
     ];
 
-    List<Widget> itemMap = items.map((item) => Boton(
-      icon: item.icon,
-      texto: item.texto,
-      color1: item.color1,
-      color2: item.color2,
-      onPress: () { print('hola'); },
+    List<Widget> itemMap = items.map((item) => FadeInLeft(
+      duration: Duration(milliseconds: 250),
+      child: Boton(
+        icon: item.icon,
+        texto: item.texto,
+        color1: item.color1,
+        color2: item.color2,
+        onPress: () { print('hola'); },
+      ),
     )).toList();
   
     return Scaffold(
