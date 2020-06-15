@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../pages/navegacion_page.dart';
 import '../pages/twitter_page.dart';
 
 class Pagina1Page extends StatelessWidget {
@@ -28,7 +29,9 @@ class Pagina1Page extends StatelessWidget {
             from: 100,
             child: IconButton(
               icon: Icon( Icons.navigate_next ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) => TwitterPage() ));
+              },
             ),
           )
         ],
@@ -36,7 +39,9 @@ class Pagina1Page extends StatelessWidget {
       floatingActionButton: ElasticInRight(
         child: FloatingActionButton(
           child: FaIcon( FontAwesomeIcons.play ),
-          onPressed: () {}
+          onPressed: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) => NavegacionPage() ));
+          }
         ),
       ),
       body: Center(
