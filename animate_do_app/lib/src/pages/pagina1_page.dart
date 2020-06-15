@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../pages/twitter_page.dart';
+
 class Pagina1Page extends StatelessWidget {
 
   @override
@@ -18,15 +20,15 @@ class Pagina1Page extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: FaIcon( FontAwesomeIcons.twitter ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => TwitterPage() ));
+            },
           ),
           SlideInLeft(
             from: 100,
             child: IconButton(
               icon: Icon( Icons.navigate_next ),
-              onPressed: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) => Pagina1Page() ));
-              },
+              onPressed: () {},
             ),
           )
         ],

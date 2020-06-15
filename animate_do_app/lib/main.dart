@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Animate_do',
-      home: TwitterPage()
+      home: Pagina1Page()
     );
 
   }
