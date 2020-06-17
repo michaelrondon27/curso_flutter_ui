@@ -20,7 +20,9 @@ class ThemeChanger with ChangeNotifier {
       case 2: // Dark
         _darkTheme = true;
         _customTheme = false;
-        _currentTheme = ThemeData.dark();
+        _currentTheme = ThemeData.dark().copyWith(
+          accentColor: Colors.pink
+        );
         break;
 
       case 3: // Personalizado
@@ -43,7 +45,9 @@ class ThemeChanger with ChangeNotifier {
     _darkTheme = value;
 
     if ( value ) {
-      _currentTheme = ThemeData.dark();
+      _currentTheme = ThemeData.dark().copyWith(
+        accentColor: Colors.pink
+      );
     } else {
       _currentTheme = ThemeData.light();
     }
@@ -57,7 +61,16 @@ class ThemeChanger with ChangeNotifier {
     _darkTheme = false;
 
     if ( value ) {
-      _currentTheme = ThemeData.light();
+      _currentTheme = ThemeData.dark().copyWith(
+        accentColor: Color(0xff48A0EB),
+        primaryColorLight: Colors.white,
+        scaffoldBackgroundColor: Color(0xff16202B),
+        textTheme: TextTheme(
+          bodyText1: TextStyle(
+            color: Colors.white
+          )
+        )
+      );
     } else {
       _currentTheme = ThemeData.light();
     }
