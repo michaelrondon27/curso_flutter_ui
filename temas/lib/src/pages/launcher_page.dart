@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../routes/routes.dart';
+
 class LauncherPage extends StatelessWidget {
 
   @override
@@ -29,12 +31,14 @@ class _ListaOpciones extends StatelessWidget {
       separatorBuilder: ( context, i ) => Divider(
         color: Colors.blue,
       ),
-      itemCount: 20,
+      itemCount: pageRoutes.length,
       itemBuilder: (context, i) => ListTile(
-        leading: FaIcon( FontAwesomeIcons.slideshare, color: Colors.blue ),
-        title: Text('Hola Mundo'),
+        leading: FaIcon( pageRoutes[i].icon, color: Colors.blue ),
+        title: Text(pageRoutes[i].titulo),
         trailing: Icon( Icons.chevron_right, color: Colors.blue ),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pageRoutes[i].page ));
+        },
       )
     );
   
