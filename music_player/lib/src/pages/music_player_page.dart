@@ -11,7 +11,8 @@ class MusicPlayerPage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           CustomAppBar(),
-          ImagenDiscoDuracion()
+          ImagenDiscoDuracion(),
+          TituloPlay()
         ]
       )
     );
@@ -126,6 +127,38 @@ class BarraProgeso extends StatelessWidget {
           SizedBox( height: 10 ),
           Text('00:00', style: estilo)
         ]
+      )
+    );
+  
+  }
+
+}
+
+class TituloPlay extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      padding: EdgeInsets.symmetric( horizontal: 40 ),
+      margin: EdgeInsets.only( top: 40 ),
+      child: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text('No Guidance', style: TextStyle( fontSize: 30, color: Colors.white.withOpacity(0.8) )),
+              Text('Chris Brown Feat. Drake', style: TextStyle( fontSize: 15, color: Colors.white.withOpacity(0.8) ))
+            ],
+          ),
+          Spacer(),
+          FloatingActionButton(
+            elevation: 0,
+            highlightElevation: 0,
+            backgroundColor: Color(0xff400321),
+            child: Icon( Icons.play_arrow ),
+            onPressed: () {},
+          )
+        ],
       )
     );
   
