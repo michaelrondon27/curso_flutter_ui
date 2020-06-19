@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:animate_do/animate_do.dart';
+import 'package:provider/provider.dart';
+
+import '../models/audioplayer_model.dart';
 import '../helpers/helpers.dart';
 import '../widgets/custom_appbar.dart';
 
@@ -84,6 +88,8 @@ class ImagenDisco extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+
     return Container(
       padding: EdgeInsets.all(20),
       width: 250,
@@ -93,8 +99,15 @@ class ImagenDisco extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Image(
-              image: AssetImage('assets/No Guidance.png')
+            SpinPerfect(
+              duration: Duration( seconds: 10 ),
+              infinite: true,
+              manualTrigger: true,
+              animate: false,
+              controller: ( animationController ) => audioPlayerModel.controller = animationController,
+              child: Image(
+                image: AssetImage('assets/No Guidance.png')
+              )
             ),
             Container(
               width: 25,
@@ -219,12 +232,16 @@ class _TituloPlayState extends State<TituloPlay> with SingleTickerProviderStateM
               progress: playAnimation,
             ),
             onPressed: () {
+              final audioPlayerModel = Provider.of<AudioPlayerModel>(context, listen: false);
+
               if ( this.isPlaying ) {
                 playAnimation.reverse();
                 this.isPlaying = false;
+                audioPlayerModel.controller.stop();
               } else {
                 playAnimation.forward();
                 this.isPlaying = true;
+                audioPlayerModel.controller.repeat();
               }
             },
           )
