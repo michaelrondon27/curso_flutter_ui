@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import 'src/models/zapato_model.dart';
 import 'src/pages/zapato_page.dart';
  
-void main() => runApp(MyApp());
+void main(){
+
+  return runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ZapatoModel>(create: (_) => ZapatoModel()),
+      ],
+      child: MyApp()
+    )
+  );
+
+}
  
 class MyApp extends StatelessWidget {
   @override
