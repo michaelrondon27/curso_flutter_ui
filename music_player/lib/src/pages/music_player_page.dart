@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_appbar.dart';
+
 class MusicPlayerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
   
     return Scaffold(
-      body: Center(
-        child: Text('Hola Mundo')
+      body: Column(
+        children: <Widget>[
+          CustomAppBar()
+        ]
       )
     );
   
