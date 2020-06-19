@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/helpers.dart';
 import '../widgets/custom_appbar.dart';
 
 class MusicPlayerPage extends StatelessWidget {
@@ -12,7 +13,10 @@ class MusicPlayerPage extends StatelessWidget {
         children: <Widget>[
           CustomAppBar(),
           ImagenDiscoDuracion(),
-          TituloPlay()
+          TituloPlay(),
+          Expanded(
+            child: Lyrics(),
+          )
         ]
       )
     );
@@ -159,6 +163,28 @@ class TituloPlay extends StatelessWidget {
             onPressed: () {},
           )
         ],
+      )
+    );
+  
+  }
+
+}
+
+class Lyrics extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    final lyrics = getLyrics();
+
+    return Container(
+      child: ListWheelScrollView(
+        physics: BouncingScrollPhysics(),
+        itemExtent: 42,
+        diameterRatio: 1.5,
+        children: lyrics.map(
+          (linea) => Text(linea, style: TextStyle( fontSize: 14, color: Colors.white.withOpacity(0.6)))
+        ).toList()
       )
     );
   
