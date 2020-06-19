@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/zapato_desc_page.dart';
 
 class ZapatoSizePreview extends StatelessWidget {
 
@@ -11,32 +12,39 @@ class ZapatoSizePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: (this.fullScreen) ? 5 : 30,
-        vertical: (this.fullScreen) ? 0 : 0
-      ),
-      child: Container(
-        width: double.infinity,
-        height: (this.fullScreen) ? 400 : 430,
-        decoration: BoxDecoration(
-          color: Color(0xffFFCF53),
-          borderRadius: (!this.fullScreen) 
-                          ? BorderRadius.circular(50) 
-                          : BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40)
-                          )
+    return GestureDetector(
+      onTap: () {
+        if (!this.fullScreen) {
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ZapatoDescPage()));
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: (this.fullScreen) ? 5 : 30,
+          vertical: (this.fullScreen) ? 0 : 0
         ),
-        child: Column(
-          children: <Widget>[
-            _ZapatoConSombra(),
-            if (!this.fullScreen)
-              _ZapatoTalla()
-          ],
-        )
+        child: Container(
+          width: double.infinity,
+          height: (this.fullScreen) ? 400 : 430,
+          decoration: BoxDecoration(
+            color: Color(0xffFFCF53),
+            borderRadius: (!this.fullScreen) 
+                            ? BorderRadius.circular(50) 
+                            : BorderRadius.only(
+                              bottomLeft: Radius.circular(50),
+                              bottomRight: Radius.circular(50),
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40)
+                            )
+          ),
+          child: Column(
+            children: <Widget>[
+              _ZapatoConSombra(),
+              if (!this.fullScreen)
+                _ZapatoTalla()
+            ],
+          )
+        ),
       ),
     );
 
