@@ -14,11 +14,11 @@ class ZapatoSizePreview extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: (this.fullScreen) ? 5 : 30,
-        vertical: (this.fullScreen) ? 5 : 0
+        vertical: (this.fullScreen) ? 0 : 0
       ),
       child: Container(
         width: double.infinity,
-        height: (this.fullScreen) ? 410 : 430,
+        height: (this.fullScreen) ? 400 : 430,
         decoration: BoxDecoration(
           color: Color(0xffFFCF53),
           borderRadius: (!this.fullScreen) 
