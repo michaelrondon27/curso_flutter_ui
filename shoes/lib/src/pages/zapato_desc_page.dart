@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/helpers.dart';
 import '../models/zapato_model.dart';
 import '../widgets/custom_widgets.dart';
 
@@ -10,6 +11,8 @@ class ZapatoDescPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+
+    cambiarStatusLight();
   
     return Scaffold(
       body: Column(
@@ -25,6 +28,7 @@ class ZapatoDescPage extends StatelessWidget {
                 child: FloatingActionButton(
                   child: Icon( Icons.chevron_left, color: Colors.white, size: 60, ),
                   onPressed: () {
+                    cambiarStatusDark();
                     Navigator.pop(context);
                   },
                   elevation: 0,
@@ -36,6 +40,7 @@ class ZapatoDescPage extends StatelessWidget {
           ),
           Expanded(
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 children: <Widget>[
                   ZapatoDescripcion(

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/helpers.dart';
 import '../widgets/custom_widgets.dart';
 
 class ZapatoPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+
+    cambiarStatusDark();
   
     return Scaffold(
       body: Column(
