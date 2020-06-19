@@ -5,7 +5,7 @@ class ZapatoDescripcion extends StatelessWidget {
   final String titulo;
   final String descripcion;
 
-  const ZapatoDescripcion({
+  ZapatoDescripcion({
     @required this.titulo, 
     @required this.descripcion
   });
