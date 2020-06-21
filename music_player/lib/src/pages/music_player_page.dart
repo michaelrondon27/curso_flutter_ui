@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:provider/provider.dart';
 
 import '../models/audioplayer_model.dart';
 import '../helpers/helpers.dart';
+import '../models/audioplayer_model.dart';
+import '../models/audioplayer_model.dart';
 import '../widgets/custom_appbar.dart';
 
 class MusicPlayerPage extends StatelessWidget {
@@ -150,11 +153,14 @@ class BarraProgeso extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final estilo = TextStyle( color: Colors.white.withOpacity(0.6) );
+    
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+    final porcentaje = audioPlayerModel.porcentaje;
 
     return Container(
       child: Column(
         children: <Widget>[
-          Text('00:00', style: estilo),
+          Text('${audioPlayerModel.songTotalDuration}', style: estilo),
           SizedBox( height: 10 ),
           Stack(
             children: <Widget>[
@@ -167,14 +173,14 @@ class BarraProgeso extends StatelessWidget {
                 bottom: 0,
                 child: Container(
                   width: 3,
-                  height: 150,
+                  height: 230 * porcentaje,
                   color: Color(0xff5D44EC),
                 ),
               )
             ],
           ),
           SizedBox( height: 10 ),
-          Text('00:00', style: estilo)
+          Text('${audioPlayerModel.currentSecond}', style: estilo)
         ]
       )
     );
@@ -193,7 +199,10 @@ class TituloPlay extends StatefulWidget {
 class _TituloPlayState extends State<TituloPlay> with SingleTickerProviderStateMixin {
 
   bool isPlaying = false;
+  bool fisrtTime = true;
   AnimationController playAnimation;
+
+  final assetAudioPlayer = new AssetsAudioPlayer.newPlayer();
 
   @override
   void initState() {
@@ -206,6 +215,24 @@ class _TituloPlayState extends State<TituloPlay> with SingleTickerProviderStateM
   void dispose() {
     this.playAnimation.dispose();
     super.dispose();
+  }
+
+  void open() {
+
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context, listen: false);
+      
+    assetAudioPlayer.open(
+      Audio('assets/No-Guidance.m4a'),
+    );
+
+    assetAudioPlayer.currentPosition.listen( (duration) {
+      audioPlayerModel.current = duration;
+    });
+
+    assetAudioPlayer.current.listen( (playingAudio) {
+      audioPlayerModel.songDuration = playingAudio.audio.duration;
+    });
+
   }
 
   @override
@@ -242,6 +269,13 @@ class _TituloPlayState extends State<TituloPlay> with SingleTickerProviderStateM
                 playAnimation.forward();
                 this.isPlaying = true;
                 audioPlayerModel.controller.repeat();
+              }
+
+              if ( this.fisrtTime ) {
+                this.open();
+                fisrtTime = false;
+              } else {
+                assetAudioPlayer.playOrPause();
               }
             },
           )
